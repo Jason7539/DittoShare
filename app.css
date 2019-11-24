@@ -16,6 +16,19 @@ hr {
 
 
 #index-jumbo {
-    background: url(img/clement-h-95YRwf6CNw8-unsplash.jpg) no-repeat center;
+    background: url(img/ditto-landing.png) no-repeat center;
     background-size: cover;
+}
+
+#jumbo-header {
+    font-size: 100px;
+}
+
+#info {
+    font-size: 50px;
+    font-style: italic;
+}
+
+.bg-ditto {
+    background-color: rgb(212, 167, 210);
 }
