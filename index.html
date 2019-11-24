@@ -46,8 +46,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <!-- BEGIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-ditto">
+        <a class="navbar-brand" href="#">DittoShare</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,22 +56,50 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                <a class="nav-item nav-link" href="#">Host</a>
+                <a class="nav-item nav-link" href="#">Join</a>
             </div>
         </div>
-    </nav>
+    </nav> <!-- END NAVBAR-->
+
+    <!-- BEGIN JUMBOTRON -->
     <div class="jumbotron jumbotronfluid" id="index-jumbo">
-            <h1 class="text-center">DittoShare</h1>
+        <div class="container">
+            <h1 class="text-center display-2" id="jumbo-header">DittoShare</h1>
             <hr>
-    </div>
-    <div class="container text-center">
-        
-        <button class="btn btn-lg btn-primary" id="hostBtn" onclick="createRoomName()">Host</button>
-        <button class="btn btn-lg btn-primary" id="joinBtn" onclick="getRoomName()">Join</button>
+            <div class="container text-center">
+                <button class="btn btn-lg bg-ditto" id="hostBtn" onclick="createRoomName()">Host</button>
+                <button class="btn btn-lg bg-ditto" id="joinBtn" onclick="getRoomName()">Join</button>
+            </div>
+        </div>
+    </div> <!-- END JUMBOTRON-->
+
+    <div class="container text-center py-5" id="info">
+        <p>DittoShare is leading edge when it comes to screensharing technology</p>
+        <footer class="blockquote-footer">Literally everyone</footer>
+        <hr class="hr-body">
     </div>
 
+
+
+    <section class="container-fluid px-0">
+        <div class="row">
+            <div class="col-6 text-center">
+                <div class="mx-4">
+                        <h1>What is DittoShare?</h1>
+                        <p style="font-size: 1.5rem;">DittoShare is a desktop application that will allow users to eliminate the issue of not being able to
+                            watch videos in real-time with friends who are not physically in the same room. The main functions
+                            of our application is to be able to join or host rooms for your friends to join, and to be able to
+                            share your view of the desktop with them at ease. By sharing your desktop, you will be able to
+                            eliminate the barrier of either being a little bit ahead or a little bit behind your friend if you
+                            start the video at the “same time”</p>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <img src="img/ditto3.jpg" alt="" style="width: 400px; height: 400px;">
+            </div>
+    </section>
+    <h1 class="text-center display-3">Testimonies</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
