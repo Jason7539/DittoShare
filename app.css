@@ -14,6 +14,10 @@ hr {
     background-repeat: no-repeat
 }
 
+.hr-body {
+    border-top: 1px solid rgb(0, 0, 0)
+}
+
 
 #index-jumbo {
     background: url(img/ditto-landing.png) no-repeat center;
@@ -22,11 +26,16 @@ hr {
 
 #jumbo-header {
     font-size: 100px;
+    font-weight: 500;
 }
 
 #info {
     font-size: 50px;
     font-style: italic;
+}
+
+#left-info p{
+    font-size: 5rem;
 }
 
 .bg-ditto {
