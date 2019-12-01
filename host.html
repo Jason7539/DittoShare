@@ -17,17 +17,32 @@
 
 <body>
 
-
+  <!-- BEGIN NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-ditto">
+    <a class="navbar-brand" href="#">DittoShare</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <h2>|</h2>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="host.html" onclick="createRoomName()">Host</a>
+        <a class="nav-item nav-link" href="join.html" onclick="getRoomName()">Join</a>
+      </div>
+    </div>
+  </nav> <!-- END NAVBAR-->
 
   <div class="container text-center">
     <h1 class="py-5">HOST</h1>
     <p>This example shows you the contents of the selected part of your display.
       Click the Start Capture button to begin.</p>
     <hr>
-    <button class="btn btn-lg btn-primary" id="start">Start Capture</button>&nbsp;
-    <button class="btn btn-lg btn-primary" id="stop">Stop Capture</button>
-    <button class="btn btn-lg btn-primary" id="call">Call</button>
-    <button class="btn btn-lg btn-primary" id="hangup">Hang Up</button>
+    <button class="btn btn-lg bg-ditto" id="start">Start Capture</button>&nbsp;
+    <button class="btn btn-lg bg-ditto" id="stop">Stop Capture</button>
+    <button class="btn btn-lg bg-ditto" id="call">Call</button>
+    <button class="btn btn-lg bg-ditto" id="hangup">Hang Up</button>
   </div>
 
 
@@ -41,9 +56,12 @@
 
   <pre id="log"></pre>
 
+  
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="./js/host.js"></script>
+  
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
