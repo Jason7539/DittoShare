@@ -1,4 +1,6 @@
 var socket = io.connect();
+// socket.join(sessionStorage.getItem("roomName"));
+
 
 const remoteVideoElem = document.getElementById("remoteVideo");
 const startCapturenElem = document.getElementById("startCapture");
@@ -28,12 +30,19 @@ socket.on("getHostSDP", function(data){
     // create answer for the host 
     remotePeerConnection.createAnswer(offerOptions).then(function(answer){
         remotePeerConnection.setLocalDescription(answer);
-        socket.emit("clientSDPReady", answer);
+
+
+
+        // STAR OFF HERE
+        // socket.emit("clientSDPReady", answer);
+        socket.emit("clientSDPReady", {"roomName": sessionStorage.getItem("roomName"), 
+        "answer":answer})
     });
 });
 
 // add host Ice candidate when it's ready
-socket.on("HostIceDone", function(hostCandidates){
+socket.on(sessionStorage.getItem("roomName") + "-" +"HostIceDone", function(hostCandidates){
+    prompt("READING ROOM MESSAGE");
     var i;
     for(i = 0; i < hostCandidates.length; i++){
         // alert(JSON.stringify(hostCandidates[i]));
@@ -66,11 +75,7 @@ function startCapture(){
 
     // TODO: add the local SDP to remote and creata answer
     // ask for host SDP 
-    socket.emit("askHostSDP", "is your sdp ready");
-
-
-
-
+    socket.emit("askHostSDP", {"roomName":sessionStorage.getItem("roomName")});
 }
 
 
@@ -89,13 +94,14 @@ function handleConnectionRemote(event) {
     const icecandidate = event.candidate;
     const newIceCandidate =  new RTCIceCandidate(icecandidate);
     
-    socket.emit("recieveClientCandidate", icecandidate);
+    socket.emit("recieveClientCandidate", {"clientIce":icecandidate, 
+    "roomName": sessionStorage.getItem("roomName"),
+    "id": sessionStorage.getItem("id")});
 }
 
-setInterval(pollIce, 1000);
+var poll = setInterval(pollIce, 1000);
 
 function pollIce(){
-    // logElem.innerHTML = "fuck you";
     logElem.innerHTML = remotePeerConnection.iceGatheringState;
     logElem.innerHTML += "\r connectionState: " + remotePeerConnection.connectionState;
     logElem.innerHTML += "\r remoteDes: " + remotePeerConnection.remoteDescription;
@@ -104,6 +110,7 @@ function pollIce(){
     // when iceCandidates are done. send a flag to server.
     if(remotePeerConnection.iceGatheringState == "complete"){
         // tell the server that hosts is done gathering candidates 
-        socket.emit("clientIceDone", "Host IS Done");  
+        socket.emit("clientIceDone", {"roomName":sessionStorage.getItem("roomName"), "id":sessionStorage.getItem("id")});  
+        clearInterval(poll);
     }
 }

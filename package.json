@@ -10,9 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "ip": "^1.1.5"
-  },
-  "devDependencies": {
-    "socket.io": "^2.3.0"
+    "ip": "^1.1.5",
+    "socketio": "^1.0.0",
+    "uniqid": "^5.0.3"
   }
 }

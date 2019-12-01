@@ -1,4 +1,9 @@
 var socket = io.connect();
+// socket.join(sessionStorage.getItem("roomName"));
+
+
+// Create title as room name the host entered from index.html
+document.getElementById("title").innerHTML = sessionStorage.getItem("roomName");
 
 // Grab elements needed from html
 const videoElem = document.getElementById("video");
@@ -20,12 +25,12 @@ stopElem.disabled = true;
 callElem.disabled = true;
 hangupElem.disabled = true;
 
+// video: {
+//   cursor: "never"
+// },
 // Options for getDisplayMedia()
 var displayMediaOptions = {
-    video: {
-      cursor: "never"
-    },
-    audio: true
+  audio: true
 };
 
 // Set event listeners for the start, stop, call, and hangup buttons
@@ -46,15 +51,17 @@ startElem.addEventListener("click", function(evt) {
   }, false);
 
 // add client SDP when ready
-socket.on("getClientSDP", function(answer){
+socket.on(sessionStorage.getItem("roomName"), function(answer){
   localPeerConnection.setRemoteDescription(answer);
 });
 
 
 // add client Ice candidate when it's done 
-socket.on("ClientIceDone", function(clientCandidates){
+socket.on(sessionStorage.getItem("roomName") + "-" + "ClientIceDone", function(clientCandidates){
+
   var i;
   for(i = 0; i < clientCandidates.length; i++){
+    
     clientIce = new RTCIceCandidate(clientCandidates[i])
     // alert("inserted: " + JSON.stringify(clientIce));
     localPeerConnection.addIceCandidate(clientIce);
@@ -68,10 +75,40 @@ async function startCapture() {
         // exchange network info / ice candidates 
         // get and share local and remote description
 
-        localStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
-        
+        localStream = await navigator.mediaDevices.getDisplayMedia({
+          video:{
+            cursor: "always"
+          },
+          audio: {
+            echoCancellation:true,
+            noiseSuppression: true,
+            sampleRate: 44100
+          }
+        });
+
+        screenStream =  await navigator.mediaDevices.getDisplayMedia({
+          video:true
+      });
+
+        audioStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation:true,
+            noiseSuppression: true,
+            sampleRate: 44100
+          }
+        });
+
+        audioTracks = audioStream.getAudioTracks();
+
+        for(i = 0; i < audioTracks.length; i++){
+          localStream.addTrack(audioTracks[i]);
+        }
+
+        // localStream.addTracks(audioStream.getAudioTracks());
+
         // start streaming localVideo 
-        videoElem.srcObject = localStream;
+        // videoElem.srcObject = localStream;
+        videoElem.srcObject = screenStream;
 
         startElem.disabled = true;
         callElem.disabled = false;
@@ -122,7 +159,8 @@ function handleConnectionLocal(event) {
   const icecandidate = event.candidate;
   const newIceCandidate = new RTCIceCandidate(icecandidate); 
   // send Icecandidate to the server 
-  socket.emit("recieveHostCandidate", icecandidate);
+  // socket.emit("recieveHostCandidate", icecandidate);
+  socket.emit("recieveHostCandidate", {"ice" : icecandidate, "roomName": sessionStorage.getItem("roomName")});
 
   // remote adds local's ice candidate
   // TODO: DELETE
@@ -135,11 +173,9 @@ function createdOffer(description) {
   // local: setLocal, remote: setRemote
   localPeerConnection.setLocalDescription(description);
 
-  socket.emit("recieveHostSDP", description);
+  // socket.emit("recieveHostSDP", description);
 
-  // remotePeerConnection.setRemoteDescription(description);
-
-  // remote: setLocal, local: setRemote
+  socket.emit("recieveHostSDP", {"hostSDP":description, "roomName":sessionStorage.getItem("roomName")});
 
   // offer options for SDP
   const offerOptions = {
@@ -160,7 +196,7 @@ function pollIce(){
   // when iceCandidates are done. send a flag to server.
   if(localPeerConnection.iceGatheringState == "complete"){
     // tell the server that hosts is done gathering candidates 
-    socket.emit("hostIceDone", "Host IS Done");  
+    socket.emit("hostIceDone", {"roomName":sessionStorage.getItem("roomName")}); // send room name  
   }
 }
 

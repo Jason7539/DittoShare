@@ -1,6 +1,8 @@
 <html>
 
 <head>Ditto Share</head>
+<body>
+    
 
 <div></div>
 <button id="hostBtn" onclick="createRoomName()">Host</button>
@@ -9,41 +11,8 @@
 <button id="joinBtn" onclick="getRoomName()">Join</button>
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="index.js"></script>
 
-<script>
-var socket = io.connect();
-
-function createRoomName() {
-    // Prompt for new room to create
-    let roomName = prompt("Enter the Room Name to create");
-
- 
-    alert("after don't show");
-
-    if (roomName == null){
-        return;
-    }
-
-    // Don't let user continue until they enter a name 
-    while(roomName == ""){
-        roomName = prompt("Enter a valid Room Name");
-    }
-
-    // Send the room name to server to create the room
-    socket.emit('createRoom', {'newRoomName':roomName});
-
-    window.location.href = './host.html';
-
-}
-
-
-function getRoomName() {
-    // TODO: ask for room name and store and ensure thats the room client joins 
-
-    window.location.href = './join.html';
-}
-
-</script>
-
+</body>
 
 </html>
