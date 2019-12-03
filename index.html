@@ -1,7 +1,148 @@
 <html>
 
-<head>Ditto Share</head>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="app.css">
+
+        <title>DittoShare</title>
+    </head>
 <body>
+    <!-- BEGIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-ditto">
+            <a class="navbar-brand" href="#">DittoShare</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h2>|</h2>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="host.html" onclick="createRoomName()">Host</a>
+                    <a class="nav-item nav-link" href="join.html" onclick="getRoomName()">Join</a>
+                </div>
+            </div>
+        </nav> <!-- END NAVBAR-->
+
+    <!-- BEGIN JUMBOTRON -->
+    <div class="jumbotron jumbotronfluid" id="index-jumbo">
+            <div class="container">
+                <h1 class="text-center display-2" id="jumbo-header">DittoShare</h1>
+                <hr class="jumbo-line">
+                <div class="container text-center">
+                    <button class="btn btn-lg bg-ditto" id="hostBtn" onclick="createRoomName()">Host</button>
+                    <button class="btn btn-lg bg-ditto" id="joinBtn" onclick="getRoomName()">Join</button>
+                </div>
+            </div>
+        </div> <!-- END JUMBOTRON-->
+
+
+    <div class="container text-center py-5" id="info">
+            <p>DittoShare is the leading edge when it comes to screensharing technology</p>
+            <footer class="blockquote-footer">Literally everyone</footer>
+            <hr>
+        </div>
+
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h2 class="featurette-heading">What is DittoShare?</h1>
+                            <p class="lead" style="font-size: 1.5rem;">DittoShare is a desktop application that will allow users
+                                to eliminate
+                                the issue of not being able to
+                                watch videos in real-time with friends who are not physically in the same room. The main
+                                functions
+                                of our application is to be able to join or host rooms for your friends to join, and to be able
+                                to
+                                share your view of the desktop with them at ease. By sharing your desktop, you will be able to
+                                eliminate the barrier of either being a little bit ahead or a little bit behind your friend if
+                                you
+                                start the video at the “same time”</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="img/ditto3.jpg" alt="pretty ditto" style="width: 400px; height: 450px;">
+                    </div>
+                </div>
+                <hr>
+                <div class="row ">
+                    <div class="col-lg-7">
+                        <img src="img/ditto-info.png" alt="">
+                    </div>
+                    <div class="col-lg-5">
+                        <h2 class="featurette-heading">Why DittoShare?</h2>
+                        <p class="lead" style="font-size: 1.5rem;">We wanted to make a free alternative to a former
+                            screensharing application, Rabbit, that was unfortunately shut down. Our service retains many of the same features as Rabbit had, while also improving the functionality of it</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+    <div class="container">
+            <h1 class="text-center display-3 featurette-heading">Testimonies</h1>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <p class="lead">"Ever since the Rabbit service shut down, I have been looking for other services for
+                        screensharing. Thankfully, I found DittoShare. Now I can easily screenshare with my other friends at
+                        no extra cost"</p>
+                    <h1>—</h1>
+                    <p><strong>Anonymous</strong></p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p class="lead">"I am a tutor for programming. I often use DittoShare to share my code, powerpoints,
+                        etc. so that my clients can easily see what I am projecting. There's no latency at all"</p>
+                    <h1>—</h1>
+                    <p><strong>Roderick S.</strong></p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p class="lead">"DittoShare is a great free alternative for other screensharing services. I highly
+                        recommend for everyone who is in need of such service to try it out. Beautiful UI / UX as well. It's
+                        everything I expected"</p>
+                    <h1>—</h1>
+                    <p><strong>Candice L.</strong></p>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+    <div class="container py-5">
+            <h1 class="display-3">Are you ready for DittoShare?</h1>
+    
+            <p class="lead">Of course you are! Click on 'Host' to create and host a room for others to join, or
+                click on 'Join' to enter an already existing room!</p>
+            <div class="text-center">
+                <button class="btn btn-lg bg-ditto" id="hostBtn" onclick="createRoomName()">Host</button>
+                <button class="btn btn-lg bg-ditto" id="joinBtn" onclick="getRoomName()">Join</button>
+            </div>
+    
+    </div>
+    <footer class="font-small bg-ditto text-white pt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="text-uppercase font-weight-bold">DittoShare</h3>
+                        <p class="lead">The leading edge when it comes to screensharing technology</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3 class="font-weight-bold">Links</h3>
+                        <a href="#" class="footer-link">Home</a>
+                        <br>
+                        <a href="host.html" class="footer-link">Host</a>
+                        <br>
+                        <a href="join.html" class="footer-link">Join</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    
+
+    
     
 
 <div></div>
@@ -12,6 +153,19 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="index.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
 
 </body>
 
